@@ -3,11 +3,13 @@
 
     <item android:title="Home"
         android:id="@+id/homeFragment"
-        android:icon="@drawable/baseline_home_24"/>
+        android:icon="@drawable/baseline_home_24"
+        android:layout="@layout/fragment_home"/>
 
     <item android:title="Favorite"
-        android:id="@+id/favoritFragment"
-        android:icon="@drawable/baseline_favorite_24"/>
+        android:id="@+id/favoritFragment2"
+        android:icon="@drawable/baseline_favorite_24"
+        android:layout="@layout/fragment_favorit"/>
 
 
 </menu>

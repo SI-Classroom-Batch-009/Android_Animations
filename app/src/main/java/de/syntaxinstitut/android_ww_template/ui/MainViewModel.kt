@@ -2,8 +2,10 @@ package de.syntaxinstitut.android_ww_template.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import de.syntaxinstitut.android_ww_template.data.AppRepository
+import de.syntaxinstitut.android_ww_template.data.datamodels.Character
 import de.syntaxinstitut.android_ww_template.data.local.getDatabase
 import de.syntaxinstitut.android_ww_template.data.remote.HarryPotterApi
 import kotlinx.coroutines.Dispatchers
@@ -21,5 +23,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getCharacters()
         }
+    }
+
+//    fun getCharacterById(id: String): Character{
+//        return repository.getCharacterById(id)
+//    }
+
+    fun getById(id: String): LiveData<Character>{
+        return repository.getCatById(id)
     }
 }

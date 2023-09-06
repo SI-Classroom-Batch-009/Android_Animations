@@ -17,5 +17,8 @@ interface HarryPotterDatabaseDao {
     @Query("SELECT * FROM character_table")
     fun getAll(): LiveData<List<Character>>
 
+    @Query("SELECT * FROM character_table WHERE id = :id")
+    fun getById(id: String): LiveData<Character>
+
 
 }

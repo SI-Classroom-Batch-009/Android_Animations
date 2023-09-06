@@ -14,5 +14,6 @@ data class Character(
     var house: String,
     var dateOfBirth: String?,
     var image: String,
+    var isLiked: Boolean = false
 
 )

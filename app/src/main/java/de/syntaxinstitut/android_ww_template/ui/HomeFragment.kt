@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentHomeBinding.inflate(inflater,container,false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         viewModel.loadData()
 
         return binding.root
@@ -34,8 +34,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.characters.observe(viewLifecycleOwner){
-            binding.characterRV.adapter = HarryPotterAdapter(it,viewModel)
+
+        var adapter = HarryPotterAdapter(emptyList(), viewModel)
+        binding.characterRV.adapter = adapter
+
+        viewModel.characters.observe(viewLifecycleOwner) {
+            adapter.update(it)
         }
 
         val helper: SnapHelper = PagerSnapHelper()

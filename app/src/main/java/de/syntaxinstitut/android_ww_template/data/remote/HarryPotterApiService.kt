@@ -6,6 +6,7 @@ import de.syntaxinstitut.android_ww_template.data.datamodels.Character
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 // Die Konstante enthält die URL der API
 const val BASE_URL = "https://hp-api.onrender.com/api/"
@@ -26,8 +27,12 @@ interface HarryPotterApiService {
 
     @GET("characters")
     suspend fun getCharacter(): List<Character>
+
+    @GET("characters/{id}")
+    fun getCharacterById(@Path("id") id: String): Character
 }
 
 object HarryPotterApi {
     val retrofitService: HarryPotterApiService by lazy { retrofit.create(HarryPotterApiService::class.java) }
 }
+

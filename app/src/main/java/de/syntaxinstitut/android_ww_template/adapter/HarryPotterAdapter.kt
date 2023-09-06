@@ -4,10 +4,13 @@ import android.app.LauncherActivity.ListItem
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import de.syntaxinstitut.android_ww_template.R
 import de.syntaxinstitut.android_ww_template.data.datamodels.Character
 import de.syntaxinstitut.android_ww_template.databinding.ListItemBinding
+import de.syntaxinstitut.android_ww_template.ui.HomeFragmentDirections
 import de.syntaxinstitut.android_ww_template.ui.MainViewModel
 
 class HarryPotterAdapter(
@@ -33,5 +36,31 @@ class HarryPotterAdapter(
         holder.binding.imageView.load(item.image)
         holder.binding.nameTV.text = item.name
 
+        if (item.isLiked) {
+            holder.binding.imageButton.setImageResource(R.drawable.baseline_favorite_24)
+        } else {
+            holder.binding.imageButton.setImageResource(R.drawable.baseline_favorite_border_24)
+        }
+
+        holder.binding.cardView.setOnClickListener {
+            it.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.id))
+        }
+
+        holder.binding.imageButton.setOnClickListener {
+            item.isLiked = !item.isLiked
+            if (item.isLiked) {
+                holder.binding.imageButton.setImageResource(R.drawable.baseline_favorite_24)
+            } else {
+                holder.binding.imageButton.setImageResource(R.drawable.baseline_favorite_border_24)
+            }
+
+        }
+
+    }
+
+    fun update(list: List<Character>) {
+        dataset = list
+        notifyDataSetChanged()
     }
 }
