@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
         viewModel.loadData()
 
         return binding.root

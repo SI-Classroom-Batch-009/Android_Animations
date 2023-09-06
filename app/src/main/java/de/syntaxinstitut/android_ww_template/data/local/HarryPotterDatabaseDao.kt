@@ -20,5 +20,14 @@ interface HarryPotterDatabaseDao {
     @Query("SELECT * FROM character_table WHERE id = :id")
     fun getById(id: String): LiveData<Character>
 
+    @Query ("UPDATE character_table SET isLiked = :liked WHERE id = :id")
+    fun updateLike(liked: Int,id: String)
+
+    @Query ("SELECT * FROM character_table WHERE isLiked = 1")
+    fun getAllLiked(): LiveData<List<Character>>
+
+    @Query("SELECT COUNT(*) FROM character_table")
+    suspend fun count(): Int
+
 
 }

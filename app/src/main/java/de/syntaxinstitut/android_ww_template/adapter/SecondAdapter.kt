@@ -1,8 +1,6 @@
 package de.syntaxinstitut.android_ww_template.adapter
 
-import android.app.LauncherActivity.ListItem
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -11,14 +9,12 @@ import de.syntaxinstitut.android_ww_template.R
 import de.syntaxinstitut.android_ww_template.data.datamodels.Character
 import de.syntaxinstitut.android_ww_template.databinding.ListItemBinding
 import de.syntaxinstitut.android_ww_template.ui.FavoritFragmentDirections
-import de.syntaxinstitut.android_ww_template.ui.HomeFragment
-import de.syntaxinstitut.android_ww_template.ui.HomeFragmentDirections
 import de.syntaxinstitut.android_ww_template.ui.MainViewModel
 
-class HarryPotterAdapter(
+class SecondAdapter(
     private var dataset: List<Character>,
     private var viewModel: MainViewModel,
-) : RecyclerView.Adapter<HarryPotterAdapter.ItemViewHolder>() {
+) : RecyclerView.Adapter<SecondAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -33,7 +29,7 @@ class HarryPotterAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
-        val item = dataset[position]
+        var item = dataset[position]
 
         holder.binding.imageView.load(item.image)
 
@@ -45,23 +41,11 @@ class HarryPotterAdapter(
             holder.binding.imageButton.setImageResource(R.drawable.baseline_favorite_border_24)
         }
 
-        holder.binding.cardView.setOnClickListener {
+//        holder.binding.cardView.setOnClickListener{
+//
+//            it.findNavController().navigate(FavoritFragmentDirections.actionFavoritFragment2ToDetailFragment(item.id))
+//
+//        }
 
-
-            it.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.id))
-
-        }
-
-        holder.binding.imageButton.setOnClickListener {
-            item.isLiked = !item.isLiked
-            viewModel.updateLike(if (item.isLiked) 1 else 0, item.id)
-        }
-
-    }
-
-    fun update(list: List<Character>) {
-        dataset = list
-        notifyDataSetChanged()
     }
 }
