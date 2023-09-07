@@ -43,9 +43,6 @@ class HomeFragment : Fragment() {
             adapter.update(it)
         }
 
-        val helper: SnapHelper = PagerSnapHelper()
-        helper.attachToRecyclerView(binding.characterRV)
-
         binding.characterRV.setHasFixedSize(true)
 
     }

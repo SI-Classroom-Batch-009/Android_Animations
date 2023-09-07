@@ -31,6 +31,7 @@ class DetailFragment : Fragment() {
 
 
         var id = requireArguments().getString("id")
+        var item = viewModel.getById(id!!)
 
         viewModel.getById(id!!).observe(viewLifecycleOwner) {
 
@@ -44,10 +45,18 @@ class DetailFragment : Fragment() {
                 binding.imageButton2.setImageResource(R.drawable.baseline_favorite_24)
             } else {
                 binding.imageButton2.setImageResource(R.drawable.baseline_favorite_border_24)
-
             }
-
         }
+
+//        binding.imageButton2.setOnClickListener {
+//            if (item == null){
+//
+//            }else {
+//                item.value!!.isLiked = !item.value!!.isLiked
+//                viewModel.updateLike(if (item.value!!.isLiked) 1 else 0,id)
+//            }
+//        }
+
 
     }
 

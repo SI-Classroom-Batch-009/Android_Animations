@@ -11,5 +11,4 @@
         android:icon="@drawable/baseline_favorite_24"
         android:layout="@layout/fragment_favorit"/>
 
-
 </menu>

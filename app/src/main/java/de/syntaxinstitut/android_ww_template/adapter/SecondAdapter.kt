@@ -8,6 +8,7 @@ import coil.load
 import de.syntaxinstitut.android_ww_template.R
 import de.syntaxinstitut.android_ww_template.data.datamodels.Character
 import de.syntaxinstitut.android_ww_template.databinding.ListItemBinding
+import de.syntaxinstitut.android_ww_template.databinding.ListItemFavoritBinding
 import de.syntaxinstitut.android_ww_template.ui.FavoritFragmentDirections
 import de.syntaxinstitut.android_ww_template.ui.MainViewModel
 
@@ -16,10 +17,10 @@ class SecondAdapter(
     private var viewModel: MainViewModel,
 ) : RecyclerView.Adapter<SecondAdapter.ItemViewHolder>() {
 
-    inner class ItemViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ItemViewHolder(val binding: ListItemFavoritBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ListItemFavoritBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
     }
 
@@ -31,21 +32,29 @@ class SecondAdapter(
 
         var item = dataset[position]
 
-        holder.binding.imageView.load(item.image)
+        holder.binding.potterIV.load(item.image)
+        holder.binding.name2TV.text = item.name
+        holder.binding.dayOfBirth2TV.text = item.dateOfBirth
+        holder.binding.gender2TV.text = item.gender
+        holder.binding.house2TV.text = item.house
 
-        holder.binding.nameTV.text = item.name
 
         if (item.isLiked) {
-            holder.binding.imageButton.setImageResource(R.drawable.baseline_favorite_24)
+            holder.binding.likebTN.setImageResource(R.drawable.baseline_favorite_24)
         } else {
-            holder.binding.imageButton.setImageResource(R.drawable.baseline_favorite_border_24)
+            holder.binding.likebTN.setImageResource(R.drawable.baseline_favorite_border_24)
         }
 
-//        holder.binding.cardView.setOnClickListener{
-//
-//            it.findNavController().navigate(FavoritFragmentDirections.actionFavoritFragment2ToDetailFragment(item.id))
-//
-//        }
+        holder.binding.likebTN.setOnClickListener {
+            item.isLiked = !item.isLiked
+            viewModel.updateLike(if (item.isLiked) 1 else 0, item.id)
+        }
 
+
+    }
+
+    fun update(list: List<Character>) {
+        dataset = list
+        notifyDataSetChanged()
     }
 }

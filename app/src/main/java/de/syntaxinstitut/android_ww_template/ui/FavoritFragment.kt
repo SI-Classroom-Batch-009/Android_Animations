@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import de.syntaxinstitut.android_ww_template.R
 import de.syntaxinstitut.android_ww_template.adapter.HarryPotterAdapter
+import de.syntaxinstitut.android_ww_template.adapter.SecondAdapter
 import de.syntaxinstitut.android_ww_template.databinding.FragmentFavoritBinding
 
 class FavoritFragment : Fragment() {
@@ -29,7 +30,7 @@ class FavoritFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var adapter = HarryPotterAdapter(emptyList(), viewModel)
+        var adapter = SecondAdapter(emptyList(), viewModel)
         binding.favoriteRV.adapter = adapter
 
         viewModel.getAllLiked().observe(viewLifecycleOwner) {
