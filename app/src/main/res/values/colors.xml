@@ -4,5 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#605B5B</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="darkActionBarBackground">#121212</color> <!-- Dunkle Hintergrundfarbe -->
+    <color name="darkActionBarText">#FFFFFF</color>       <!-- Textfarbe in der Action Bar -->
+
+
 
 </resources>

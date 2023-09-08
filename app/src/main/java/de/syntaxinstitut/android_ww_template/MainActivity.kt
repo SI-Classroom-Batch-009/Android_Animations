@@ -2,6 +2,7 @@ package de.syntaxinstitut.android_ww_template
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -45,6 +46,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    // Back Pfeil - Actionbar
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                val navController = findNavController(R.id.fragmentContainerView)
+                navController.popBackStack()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    // Actionbar - titel setzen
     fun Fragment.setActionBarTitle(title: String) {
         val activity = requireActivity()
         if (activity is AppCompatActivity) {
