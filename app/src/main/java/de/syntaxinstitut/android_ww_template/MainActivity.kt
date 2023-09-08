@@ -1,5 +1,6 @@
 package de.syntaxinstitut.android_ww_template
 
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24)
+        //supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.black)))
 
 
 

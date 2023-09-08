@@ -36,6 +36,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/potterIV"
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/name2TV"
             app:layout_constraintStart_toStartOf="@+id/name2TV"
             app:layout_constraintTop_toBottomOf="@+id/name2TV" />
@@ -59,6 +61,7 @@
             android:layout_marginTop="16dp"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/name2TV"
             app:layout_constraintTop_toTopOf="parent" />
@@ -69,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/houseTV"
             app:layout_constraintStart_toStartOf="@+id/houseTV"
             app:layout_constraintTop_toBottomOf="@+id/houseTV" />
