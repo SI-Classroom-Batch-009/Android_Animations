@@ -2,6 +2,8 @@ package de.syntaxinstitut.android_ww_template
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -24,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setupWithNavController(navController)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24)
+
 
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
@@ -38,6 +43,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun Fragment.setActionBarTitle(title: String) {
+        val activity = requireActivity()
+        if (activity is AppCompatActivity) {
+            val actionBar: ActionBar? = activity.supportActionBar
+            actionBar?.title = title
+        }
     }
 
 }

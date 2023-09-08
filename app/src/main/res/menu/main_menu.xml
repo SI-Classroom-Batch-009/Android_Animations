@@ -9,6 +9,6 @@
     <item android:title="Favorite"
         android:id="@+id/favoritFragment2"
         android:icon="@drawable/baseline_favorite_24"
-        android:layout="@layout/fragment_favorit"/>
+        android:layout="@layout/fragment_favorit" />
 
 </menu>

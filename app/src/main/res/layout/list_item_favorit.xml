@@ -5,7 +5,9 @@
     android:id="@+id/cardView2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    app:contentPadding="8dp"
+    app:cardCornerRadius="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,14 +26,16 @@
             android:id="@+id/name2TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/potterIV"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/house2TV"
+            android:id="@+id/naame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -41,24 +45,26 @@
             app:layout_constraintTop_toBottomOf="@+id/name2TV" />
 
         <TextView
-            android:id="@+id/gender2TV"
+            android:id="@+id/houseTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="56dp"
             android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/name2TV"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/dayOfBirth2TV"
+            android:id="@+id/houuse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/gender2TV"
-            app:layout_constraintStart_toStartOf="@+id/gender2TV"
-            app:layout_constraintTop_toBottomOf="@+id/gender2TV" />
+            app:layout_constraintEnd_toEndOf="@+id/houseTV"
+            app:layout_constraintStart_toStartOf="@+id/houseTV"
+            app:layout_constraintTop_toBottomOf="@+id/houseTV" />
 
         <ImageButton
             android:id="@+id/likebTN"

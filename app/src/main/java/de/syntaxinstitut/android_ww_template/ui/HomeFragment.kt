@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
+import de.syntaxinstitut.android_ww_template.MainActivity
 import de.syntaxinstitut.android_ww_template.R
 import de.syntaxinstitut.android_ww_template.adapter.HarryPotterAdapter
 import de.syntaxinstitut.android_ww_template.databinding.FragmentHomeBinding
@@ -36,6 +39,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setActionBarTitle("Characters")
+
+
         var adapter = HarryPotterAdapter(emptyList(), viewModel)
         binding.characterRV.adapter = adapter
 
@@ -45,6 +51,15 @@ class HomeFragment : Fragment() {
 
         binding.characterRV.setHasFixedSize(true)
 
+    }
+
+    fun Fragment.setActionBarTitle(title: String) {
+        val activity = requireActivity()
+        if (activity is AppCompatActivity) {
+            val actionBar: ActionBar? = activity.supportActionBar
+            actionBar?.title = title
+            actionBar?.setDisplayHomeAsUpEnabled(false)
+        }
     }
 
 }

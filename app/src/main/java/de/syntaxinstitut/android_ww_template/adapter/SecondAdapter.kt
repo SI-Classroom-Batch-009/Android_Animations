@@ -33,10 +33,12 @@ class SecondAdapter(
         var item = dataset[position]
 
         holder.binding.potterIV.load(item.image)
-        holder.binding.name2TV.text = item.name
-        holder.binding.dayOfBirth2TV.text = item.dateOfBirth
-        holder.binding.gender2TV.text = item.gender
-        holder.binding.house2TV.text = item.house
+        with(holder){
+            binding.name2TV.setText(R.string.Name)
+            binding.houseTV.setText(R.string.House)
+            binding.naame.text = item.name
+            binding.houuse.text = item.house
+        }
 
 
         if (item.isLiked) {

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -29,6 +31,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setActionBarTitle("Character Detail")
+
 
         var id = requireArguments().getString("id")
         var item = viewModel.getById(id!!)
@@ -48,16 +52,16 @@ class DetailFragment : Fragment() {
             }
         }
 
-//        binding.imageButton2.setOnClickListener {
-//            if (item == null){
-//
-//            }else {
-//                item.value!!.isLiked = !item.value!!.isLiked
-//                viewModel.updateLike(if (item.value!!.isLiked) 1 else 0,id)
-//            }
-//        }
 
+    }
 
+    fun Fragment.setActionBarTitle(title: String) {
+        val activity = requireActivity()
+        if (activity is AppCompatActivity) {
+            val actionBar: ActionBar? = activity.supportActionBar
+            actionBar?.title = title
+            actionBar?.setDisplayHomeAsUpEnabled(true)
+        }
     }
 
 }
