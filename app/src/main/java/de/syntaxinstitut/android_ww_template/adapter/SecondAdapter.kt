@@ -17,10 +17,12 @@ class SecondAdapter(
     private var viewModel: MainViewModel,
 ) : RecyclerView.Adapter<SecondAdapter.ItemViewHolder>() {
 
-    inner class ItemViewHolder(val binding: ListItemFavoritBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ItemViewHolder(val binding: ListItemFavoritBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = ListItemFavoritBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ListItemFavoritBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
     }
 
@@ -33,7 +35,7 @@ class SecondAdapter(
         var item = dataset[position]
 
         holder.binding.potterIV.load(item.image)
-        with(holder){
+        with(holder) {
             binding.name2TV.setText(R.string.Name)
             binding.houseTV.setText(R.string.House)
             binding.naame.text = item.name

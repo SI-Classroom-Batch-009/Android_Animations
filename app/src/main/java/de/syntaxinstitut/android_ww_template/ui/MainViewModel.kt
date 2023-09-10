@@ -26,17 +26,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun getAllLiked(): LiveData<List<Character>>{
+    fun getAllLiked(): LiveData<List<Character>> {
         return repository.getAllLiked()
     }
 
-    fun getById(id: String): LiveData<Character>{
+    fun getById(id: String): LiveData<Character> {
         return repository.getCatById(id)
     }
 
-    fun updateLike(liked: Int,id: String){
+    fun updateLike(liked: Int, id: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateLike(liked,id)
+            repository.updateLike(liked, id)
         }
 
     }

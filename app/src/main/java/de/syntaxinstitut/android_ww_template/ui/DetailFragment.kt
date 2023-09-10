@@ -52,7 +52,6 @@ class DetailFragment : Fragment() {
             }
         }
 
-
     }
 
     fun Fragment.setActionBarTitle(title: String) {

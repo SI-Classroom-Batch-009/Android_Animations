@@ -32,14 +32,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24)
         //supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.black)))
 
-
-
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.homeFragment -> {
                     navController.popBackStack(R.id.homeFragment, false)
                     false
                 }
+
                 else -> {
                     NavigationUI.onNavDestinationSelected(item, navController)
                 }
@@ -57,6 +56,7 @@ class MainActivity : AppCompatActivity() {
                 navController.popBackStack()
                 return true
             }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }

@@ -6,5 +6,7 @@
         <item name="colorPrimary">#5F0C8C</item>
         <item name="colorSecondary">@color/white</item>
         <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/black</item>
+        <item name="colorOnSurface">@color/white</item>
     </style>
 </resources>

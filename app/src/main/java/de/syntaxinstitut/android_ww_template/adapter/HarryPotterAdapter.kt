@@ -47,7 +47,6 @@ class HarryPotterAdapter(
 
         holder.binding.cardView.setOnClickListener {
 
-
             it.findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.id))
 
