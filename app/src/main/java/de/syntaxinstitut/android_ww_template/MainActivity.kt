@@ -1,21 +1,23 @@
 package de.syntaxinstitut.android_ww_template
 
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import de.syntaxinstitut.android_ww_template.databinding.ActivityMainBinding
+import de.syntaxinstitut.android_ww_template.ui.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +34,47 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24)
         //supportActionBar?.setBackgroundDrawable(ColorDrawable(getColor(R.color.black)))
 
+        // Hier werden NavOptions festgelegt via Builder und die Enter/Exit Animation gesetted
+        val options = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setEnterAnim(R.anim.slide_in_top)
+            .setExitAnim(R.anim.slide_out_bottom)
+            .setPopEnterAnim(R.anim.slide_in_top)
+            .setPopExitAnim(R.anim.slide_out_bottom)
+            .build()
+
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.homeFragment -> {
-                    navController.popBackStack(R.id.homeFragment, false)
-                    false
+                    //wichtig! .navigate verwenden um options zu benutzen
+                    navController.navigate(R.id.homeFragment, null, options)
+
                 }
 
                 else -> {
-                    NavigationUI.onNavDestinationSelected(item, navController)
+                    navController.navigate(R.id.favoritFragment2, null, options)
+                }
+            }
+            true
+        }
+        // observer auf unseren Boolean wert um das BottomNav ein- oder auszublenden
+        viewModel.showBottomNav.observe(this) {
+            if (it) {
+                // setzt die visibility auf VISIBLE
+                binding.bottomNavigationView.isVisible = true
+                binding.bottomNavigationView.animate().apply {
+                    //fade in mit duration von einer Sekunde
+                    duration = 1000
+                    alpha(1f)
+                }
+            } else {
+                binding.bottomNavigationView.animate().apply {
+                    //fade out mit duration von einer Sekunde
+                    duration = 1000
+                    alpha(0f)
+                }.withEndAction{
+                    // setzt dei visibility auf GONE
+                    binding.bottomNavigationView.isVisible = false
                 }
             }
         }
@@ -56,7 +90,6 @@ class MainActivity : AppCompatActivity() {
                 navController.popBackStack()
                 return true
             }
-
             else -> return super.onOptionsItemSelected(item)
         }
     }

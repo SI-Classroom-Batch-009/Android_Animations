@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.BounceInterpolator
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -50,6 +52,54 @@ class DetailFragment : Fragment() {
             } else {
                 binding.imageButton2.setImageResource(R.drawable.baseline_favorite_border_24)
             }
+        }
+        binding.imageView4.load(viewModel.characters.value?.get(1)?.image)
+
+        binding.imageView3.setOnClickListener {
+            // wir drehen beide imageViews um 90 Grad um die Y-Achse mit einer duration von 300 ms
+            it.animate().apply {
+                duration = 300
+                rotationYBy(90f)
+                binding.imageView4.animate().rotationYBy(90f)
+            }.withEndAction {
+                // macht die imageView3 durchsichtig
+                it.alpha = 0f
+                // setzt die visibility der imageView4 auf VISIBLE
+                binding.imageView4.isVisible = true
+                // wir drehen beide imageViews um 90 Grad um die Y-Achse mit einer duration von 300 ms
+                binding.imageView4.animate().apply {
+                    duration = 300
+                    it.animate().rotationYBy(90f)
+                    rotationXBy(90f)
+                }
+            }
+        }
+        binding.imageView4.setOnClickListener {
+            // wir drehen beide imageViews um 90 Grad um die Y-Achse mit einer duration von 300 ms
+            it.animate().apply {
+                duration = 300
+                rotationYBy(90f)
+                binding.imageView3.animate().rotationYBy(90f)
+            }.withEndAction {
+
+                // hier wird die imageview4 auf visibility GONE gesetzt
+                binding.imageView4.isVisible = false
+                // hier wird die imageView3 wieder sichtbar gemacht
+                binding.imageView3.alpha = 1f
+                // wir drehen beide imageViews um 90 Grad um die Y-Achse mit einer duration von 300 ms
+                binding.imageView3.animate().apply {
+                    duration = 300
+                    it.animate().rotationYBy(90f)
+                    rotationYBy(90f)
+                }
+            }
+        }
+        binding.imageButton2.setOnClickListener {
+            viewModel.switchVisibleBottomNav()
+        }
+        binding.name.setOnClickListener {
+            binding.progressBar.incrementProgressBy(10)
+            if (binding.progressBar.progress == 100) binding.progressBar.progress = 0
         }
 
     }

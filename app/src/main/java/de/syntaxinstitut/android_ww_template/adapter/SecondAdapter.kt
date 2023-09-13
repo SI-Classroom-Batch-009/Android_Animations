@@ -2,6 +2,14 @@ package de.syntaxinstitut.android_ww_template.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.AnticipateInterpolator
+import android.view.animation.BounceInterpolator
+import android.view.animation.CycleInterpolator
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.LinearInterpolator
+import android.view.animation.OvershootInterpolator
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -48,11 +56,67 @@ class SecondAdapter(
         } else {
             holder.binding.likebTN.setImageResource(R.drawable.baseline_favorite_border_24)
         }
-
+        var click = 0
+        // Hier probieren wir die verschiedenen Interpolator aus und sorgen durch click dafür, dass sie auch wieder zurück gehen
+        // würde ähnlich bei einem selbstanimierten switchbutton funktionieren
         holder.binding.likebTN.setOnClickListener {
-            item.isLiked = !item.isLiked
-            viewModel.updateLike(if (item.isLiked) 1 else 0, item.id)
+            if (click % 2 == 0)
+                when (position) {
+                    0 -> it.animate()
+                        .apply { translationXBy(-150f); interpolator = LinearInterpolator() }
+
+                    1 -> it.animate()
+                        .apply { translationXBy(-150f); interpolator = AccelerateInterpolator() }
+
+                    2 -> it.animate()
+                        .apply { translationXBy(-150f); interpolator = DecelerateInterpolator() }
+
+                    3 -> it.animate()
+                        .apply { translationXBy(-150f); interpolator = BounceInterpolator() }
+
+                    4 -> it.animate()
+                        .apply { translationXBy(-150f); interpolator = OvershootInterpolator() }
+
+                    5 -> it.animate()
+                        .apply { translationXBy(-150f); interpolator = AnticipateInterpolator() }
+
+                    6 -> it.animate()
+                        .apply { translationXBy(-150f); interpolator = CycleInterpolator(20f) }
+
+                    7 -> it.animate().apply {
+                        translationXBy(-150f); interpolator = AccelerateDecelerateInterpolator()
+                    }
+
+                } else
+                when (position) {
+                    0 -> it.animate()
+                        .apply { translationXBy(150f); interpolator = LinearInterpolator() }
+
+                    1 -> it.animate()
+                        .apply { translationXBy(150f); interpolator = AccelerateInterpolator() }
+
+                    2 -> it.animate()
+                        .apply { translationXBy(150f); interpolator = DecelerateInterpolator() }
+
+                    3 -> it.animate()
+                        .apply { translationXBy(150f); interpolator = BounceInterpolator() }
+
+                    4 -> it.animate()
+                        .apply { translationXBy(150f); interpolator = OvershootInterpolator() }
+
+                    5 -> it.animate()
+                        .apply { translationXBy(150f); interpolator = AnticipateInterpolator() }
+
+                    6 -> it.animate()
+                        .apply { translationXBy(150f); interpolator = CycleInterpolator(20f) }
+
+                    7 -> it.animate().apply {
+                        translationXBy(150f); interpolator = AccelerateDecelerateInterpolator()
+                    }
+                }
+            click++
         }
+
 
 
     }

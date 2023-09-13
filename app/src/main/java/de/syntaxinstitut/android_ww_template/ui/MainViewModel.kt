@@ -3,6 +3,7 @@ package de.syntaxinstitut.android_ww_template.ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import de.syntaxinstitut.android_ww_template.data.AppRepository
 import de.syntaxinstitut.android_ww_template.data.datamodels.Character
@@ -18,11 +19,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = AppRepository(HarryPotterApi, database)
 
     val characters = repository.characters
+    // value für den BottomNav-Toggle
+    var _showBottomNav = MutableLiveData(true)
+    val showBottomNav: LiveData<Boolean>
+        get() = _showBottomNav
 
     fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getCharacters()
         }
+    }
+
+    fun switchVisibleBottomNav() {
+        _showBottomNav.value = _showBottomNav.value?.not()
     }
 
 
